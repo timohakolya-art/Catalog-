@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="lt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f6f2">
+  <meta name="description" content="Baltijos Lubos įmontuojamų šviestuvų katalogas. Peržiūrėkite modelius ir pateikite užklausą.">
+  <title>Šviestuvų katalogas — Baltijos Lubos</title>
+  <style>
+    :root{--bg:#f6f6f2;--paper:#fff;--ink:#20231e;--muted:#73796f;--line:#e6e8df;--lime:#d5f279;--dark:#262b24;--radius:22px;--shadow:0 14px 42px #262b240b}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    a{color:inherit}
+    .wrap{width:min(1160px,calc(100% - 44px));margin-inline:auto}
+    .topbar{border-bottom:1px solid var(--line);background:#f6f6f2e8}
+    .nav{height:82px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .brand-mark{display:grid;place-items:center;width:38px;height:38px;background:var(--lime);border-radius:12px;font-size:19px;font-weight:900;letter-spacing:-.08em}
+    .brand-name{font-weight:850;letter-spacing:-.045em;font-size:18px;line-height:1.05}
+    .brand-name small{display:block;font-size:9px;letter-spacing:.18em;font-weight:750;color:var(--muted);margin-top:6px}
+    .nav-note{font-size:12px;color:var(--muted);letter-spacing:.02em}
+    .hero{padding:66px 0 50px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(270px,.8fr);gap:28px;align-items:stretch}
+    .kicker{font-size:10px;text-transform:uppercase;font-weight:800;letter-spacing:.18em;color:#68705f;display:flex;gap:9px;align-items:center}
+    .kicker:before{content:"";width:24px;height:2px;background:#a5c957;display:inline-block}
+    h1{font-size:clamp(44px,6vw,78px);line-height:.96;letter-spacing:-.075em;margin:20px 0 22px;max-width:720px;font-weight:780}
+    .hero-copy{font-size:15px;line-height:1.8;color:var(--muted);max-width:540px;margin:0}
+    .hero-visual{border-radius:var(--radius);background:var(--lime);padding:26px;display:flex;flex-direction:column;justify-content:space-between;min-height:240px;position:relative;overflow:hidden}
+    .hero-visual:after{content:"";position:absolute;width:220px;height:220px;border:1px solid #262b2424;border-radius:50%;right:-44px;top:42px;box-shadow:0 0 0 22px #262b2407,0 0 0 45px #262b2407}
+    .hero-visual .mini-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;position:relative;z-index:1}
+    .hero-visual strong{font-size:clamp(24px,3vw,34px);line-height:1.05;letter-spacing:-.06em;max-width:240px;position:relative;z-index:1}
+    .hero-visual small{font-size:12px;color:#505744;position:relative;z-index:1}
+    .catalog-head{border-top:1px solid var(--line);padding:25px 0 20px;display:flex;justify-content:space-between;align-items:end;gap:20px}
+    .catalog-head h2{font-size:26px;letter-spacing:-.06em;margin:0}
+    .catalog-head p{font-size:12px;color:var(--muted);margin:7px 0 0}
+    .count{color:var(--muted);font-size:12px;white-space:nowrap;padding-bottom:4px}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;padding-bottom:78px}
+    .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;min-width:0}
+    .photo{height:300px;background:#efefea;position:relative;display:grid;place-items:center;overflow:hidden}
+    .photo img{width:100%;height:100%;object-fit:contain;padding:22px;transition:transform .35s ease;mix-blend-mode:multiply}
+    .card:hover .photo img{transform:scale(1.035)}
+    .tag{position:absolute;left:16px;top:16px;background:#ffffffea;border:1px solid #ffffff;border-radius:100px;padding:8px 11px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;z-index:1}
+    .photo-fallback{display:none;width:180px;height:180px;border-radius:50%;border:11px solid #fff;background:linear-gradient(145deg,#fafaf7,#d9dbd3);box-shadow:inset 0 0 0 2px #d5d8ce,0 12px 25px #00000012;position:relative}
+    .photo-fallback:after{content:"";position:absolute;inset:20px;border-radius:50%;background:#f6f7f2;border:1px solid #d5d8ce;box-shadow:inset 0 5px 12px #0000000a}
+    .card-content{padding:24px;display:flex;flex-direction:column;flex:1}
+    .meta{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:750}
+    h3{font-size:25px;letter-spacing:-.06em;line-height:1.08;margin:10px 0 10px}
+    .description{font-size:13px;line-height:1.7;color:var(--muted);margin:0 0 18px;max-width:480px;min-height:44px}
+    .specs{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:22px}
+    .specs span{border:1px solid var(--line);border-radius:100px;padding:8px 10px;color:#50574c;font-size:11px}
+    .purchase{display:flex;justify-content:space-between;align-items:center;gap:14px;border-top:1px solid var(--line);padding-top:18px;margin-top:auto}
+    .price{font-size:32px;line-height:1;font-weight:820;letter-spacing:-.07em}
+    .price-note{font-size:11px;color:var(--muted);margin-top:6px}
+    .btn{appearance:none;border:0;border-radius:100px;background:var(--dark);color:#fff;padding:13px 17px;min-height:45px;font-size:12px;font-weight:780;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;transition:transform .15s ease,background .15s ease}
+    .btn:hover{background:#41483a;transform:translateY(-1px)}
+    .btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #a2c95c;outline-offset:2px}
+    .btn-light{background:#eff1e9;color:var(--ink)}
+    .btn-light:hover{background:#e2e7d8}
+    .below{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding-bottom:74px}
+    .info-card{border:1px solid var(--line);border-radius:var(--radius);padding:24px;background:#ffffff8a}
+    .info-card h3{font-size:18px;margin:0 0 9px;letter-spacing:-.04em}
+    .info-card p{font-size:12px;line-height:1.75;color:var(--muted);margin:0}
+    footer{background:var(--dark);color:#fff;padding:30px 0}
+    .footer-row{display:flex;justify-content:space-between;align-items:center;gap:20px}
+    .footer-row strong{font-size:15px;letter-spacing:-.03em}
+    .footer-row p{font-size:11px;color:#c7ccc0;margin:7px 0 0}
+    .footer-mark{font-size:10px;color:#c7ccc0;letter-spacing:.12em;text-transform:uppercase}
+    .backdrop{display:none;position:fixed;inset:0;background:#171b15a8;z-index:20;padding:20px;align-items:center;justify-content:center}
+    .backdrop.open{display:flex}
+    .modal{width:min(500px,100%);max-height:92vh;overflow:auto;background:#fff;border-radius:24px;padding:26px;box-shadow:0 24px 90px #0003}
+    .modal-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+    .modal h2{font-size:26px;line-height:1.05;letter-spacing:-.06em;margin:10px 0 8px}
+    .modal-intro{font-size:12px;line-height:1.65;color:var(--muted);margin:0 0 15px}
+    .close{border:0;border-radius:50%;width:36px;height:36px;background:#f0f1eb;font-size:17px;cursor:pointer;color:var(--ink);flex:none}
+    label{display:block;font-size:11px;font-weight:800;margin:14px 0 7px}
+    input,select,textarea{width:100%;border:1px solid #dfe2d8;border-radius:11px;background:#fbfbf8;padding:12px 13px;font:inherit;font-size:13px;color:var(--ink)}
+    textarea{resize:vertical;min-height:72px}
+    .form-two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .form-actions{display:flex;gap:9px;margin-top:18px}
+    .form-actions .btn{flex:1}
+    .fineprint{font-size:10px;line-height:1.6;color:var(--muted);margin:13px 0 0}
+    .status{display:none;margin-top:14px;padding:12px;border-radius:11px;background:#f0f7df;font-size:12px;line-height:1.5;color:#344321}
+    .status.show{display:block}
+    .order-message{display:none;margin-top:12px;width:100%;min-height:110px}
+    .order-message.show{display:block}
+    @media(max-width:760px){.wrap{width:min(100% - 32px,1160px)}.hero{grid-template-columns:1fr;padding:46px 0 36px;gap:20px}.hero-visual{min-height:160px}.hero-visual strong{max-width:270px}.grid{gap:14px}.photo{height:240px}.card-content{padding:19px}.below{gap:12px}.info-card{padding:19px}}
+    @media(max-width:560px){.nav{height:72px}.nav-note{display:none}h1{font-size:49px}.hero-copy{font-size:14px}.catalog-head h2{font-size:23px}.grid{grid-template-columns:1fr}.photo{height:270px}.card-content{padding:22px}.below{grid-template-columns:1fr}.footer-row{align-items:flex-start;flex-direction:column}.count{font-size:11px}.form-two{grid-template-columns:1fr}.modal{padding:21px}.form-actions{flex-direction:column}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="Baltijos Lubos — pradžia">
+        <span class="brand-mark">BL</span>
+        <span class="brand-name">BALTIJOS LUBOS<small>APŠVIETIMO KATALOGAS</small></span>
+      </a>
+      <div class="nav-note">Įmontuojami šviestuvai · Lietuva</div>
+    </div>
+  </header>
+
+  <main id="top" class="wrap">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <div class="kicker">Šviesa, kuri dera prie jūsų erdvės</div>
+        <h1 id="hero-title">Apšvietimas.<br>Be pertekliaus.</h1>
+        <p class="hero-copy">Atrinkti įmontuojami šviestuvai jūsų namams ir projektams. Išsirinkite modelį, pasirinkite kiekį ir pateikite užklausą — padėsime suderinti apšvietimą su jūsų lubomis.</p>
+      </div>
+      <aside class="hero-visual">
+        <span class="mini-label">BALTIJOS LUBOS · KATALOGAS</span>
+        <strong>Mažos detalės. Didelis skirtumas.</strong>
+        <small>Kainos nurodytos už 1 vnt.</small>
+      </aside>
+    </section>
+
+    <section aria-labelledby="catalog-title">
+      <div class="catalog-head">
+        <div><h2 id="catalog-title">Įmontuojami šviestuvai</h2><p>Pradinis katalogas · daugiau modelių netrukus</p></div>
+        <div class="count">02 produktai</div>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="photo">
+            <span class="tag">Integruotas LED</span>
+            <img src="https://enerlight.ua/media/img/products/8876.png" alt="Philips Meson apvalus įmontuojamas LED šviestuvas" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+            <span class="photo-fallback" aria-hidden="true"></span>
+          </div>
+          <div class="card-content">
+            <div class="meta">Philips · Meson</div>
+            <h3>Philips Meson 12,5 W</h3>
+            <p class="description">Plono profilio apvalus LED šviestuvas, skleidžiantis tolygią šviesą. Galima rinktis šiltą arba neutralią baltą šviesą.</p>
+            <div class="specs"><span>12,5 W</span><span>3000 K / 4000 K</span><span>LED</span><span>Balta</span></div>
+            <div class="purchase">
+              <div><div class="price">10 €</div><div class="price-note">už vienetą</div></div>
+              <button class="btn" type="button" onclick="openOrder('Philips Meson 12,5 W',10,true)">Pasiteirauti <span aria-hidden="true">↗</span></button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="photo">
+            <span class="tag">GU10 · Aliuminis</span>
+            <img src="https://ekoliumenas.lt/38580-large_default/imontuojamas-sviestuvas-aros-white-o9-nc2152r-yld-022373.jpg" alt="AROS White Ø9 įmontuojamas šviestuvas" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+            <span class="photo-fallback" aria-hidden="true"></span>
+          </div>
+          <div class="card-content">
+            <div class="meta">YLD · NC2152R</div>
+            <h3>AROS White Ø9</h3>
+            <p class="description">Minimalistinis baltas aliuminio korpusas su keičiamu GU10 šviesos šaltiniu. Lemputė į komplektą neįeina.</p>
+            <div class="specs"><span>Ø 9 cm</span><span>Išpjova Ø 8 cm</span><span>GU10</span><span>IP20</span></div>
+            <div class="purchase">
+              <div><div class="price">18 €</div><div class="price-note">už vienetą</div></div>
+              <button class="btn" type="button" onclick="openOrder('AROS White Ø9',18,false)">Pasiteirauti <span aria-hidden="true">↗</span></button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="below" aria-label="Informacija apie katalogą">
+      <div class="info-card"><h3>Reikia kelių dešimčių šviestuvų?</h3><p>Užklausoje nurodykite kiekį ir kontaktus. Dėl didesnio kiekio ar konkretaus projekto galėsime aptarti tinkamą sprendimą.</p></div>
+      <div class="info-card"><h3>Nežinote, ką pasirinkti?</h3><p>Renkantis svarbu ne tik dizainas, bet ir montavimo angos dydis, lubų konstrukcija bei pageidaujama šviesos spalva.</p></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <div><strong>Baltijos Lubos</strong><p>Įmontuojamų šviestuvų katalogas</p></div>
+      <div class="footer-mark">Apšvietimas · Lubos · Interjeras</div>
+    </div>
+  </footer>
+
+  <div class="backdrop" id="orderBackdrop" role="dialog" aria-modal="true" aria-labelledby="orderTitle">
+    <div class="modal">
+      <div class="modal-top">
+        <div><div class="kicker">Užklausa</div><h2 id="orderTitle">Pasiteirauti apie prekę</h2></div>
+        <button class="close" type="button" onclick="closeOrder()" aria-label="Uždaryti užklausos langą">×</button>
+      </div>
+      <p class="modal-intro">Užpildykite informaciją — paruošime žinutės tekstą, kurį galėsite nukopijuoti ir išsiųsti jums patogiu kanalu.</p>
+      <form id="orderForm">
+        <label for="product">Pasirinktas šviestuvas</label><input id="product" name="product" readonly>
+        <div class="form-two">
+          <div id="variantBlock"><label for="variant">Šviesos spalva</label><select id="variant" name="variant"><option value="3000 K — šilta balta">3000 K — šilta balta</option><option value="4000 K — neutrali balta">4000 K — neutrali balta</option></select></div>
+          <div><label for="qty">Kiekis (vnt.)</label><input id="qty" name="qty" type="number" min="1" max="9999" value="1" required></div>
+        </div>
+        <div class="form-two">
+          <div><label for="name">Jūsų vardas</label><input id="name" name="name" autocomplete="name" placeholder="Vardas"></div>
+          <div><label for="contact">Telefonas arba el. paštas</label><input id="contact" name="contact" placeholder="Jūsų kontaktai" required></div>
+        </div>
+        <label for="note">Papildoma informacija (nebūtina)</label><textarea id="note" name="note" placeholder="Pavyzdžiui, objekto miestas ar klausimas"></textarea>
+        <div class="form-actions"><button class="btn" type="submit">Paruošti užklausą</button><button class="btn btn-light" type="button" onclick="closeOrder()">Atšaukti</button></div>
+        <div class="status" id="status" role="status"></div>
+        <textarea class="order-message" id="orderMessage" aria-label="Paruoštos užklausos tekstas" readonly></textarea>
+        <div class="form-actions" id="copyActions" style="display:none"><button class="btn" type="button" onclick="copyMessage()">Kopijuoti žinutę</button><button class="btn btn-light" type="button" onclick="openEmail()">Atidaryti el. paštą</button></div>
+        <p class="fineprint">Ši demonstracinė versija žinutės automatiškai neišsiunčia. Prieš viešai dalijantis katalogu verta įrašyti įmonės el. paštą arba telefono / WhatsApp numerį.</p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const backdrop = document.getElementById('orderBackdrop');
+    let selectedProduct = '';
+    let selectedPrice = 0;
+    let needsVariant = false;
+    let preparedMessage = '';
+
+    function openOrder(product, price, variant) {
+      selectedProduct = product;
+      selectedPrice = price;
+      needsVariant = variant;
+      document.getElementById('product').value = product;
+      document.getElementById('variantBlock').style.display = variant ? 'block' : 'none';
+      document.getElementById('orderTitle').textContent = 'Užklausa: ' + product;
+      document.getElementById('status').classList.remove('show');
+      document.getElementById('orderMessage').classList.remove('show');
+      document.getElementById('copyActions').style.display = 'none';
+      document.getElementById('orderForm').reset();
+      document.getElementById('product').value = product;
+      document.getElementById('qty').value = 1;
+      backdrop.classList.add('open');
+      document.getElementById('contact').focus();
+    }
+    function closeOrder() { backdrop.classList.remove('open'); }
+    backdrop.addEventListener('click', (event) => { if (event.target === backdrop) closeOrder(); });
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeOrder(); });
+
+    document.getElementById('orderForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const form = new FormData(event.currentTarget);
+      const qty = Math.max(1, Math.min(9999, Number(form.get('qty')) || 1));
+      const variant = needsVariant ? '\nŠviesos spalva: ' + form.get('variant') : '';
+      const total = (selectedPrice * qty).toLocaleString('lt-LT', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      preparedMessage = 'Laba diena, norėčiau pasiteirauti dėl šviestuvo.\n\nPrekė: ' + selectedProduct + '\nKaina: ' + selectedPrice + ' € / vnt.\nKiekis: ' + qty + ' vnt.\nPreliminari suma: ' + total + ' €' + variant + '\nVardas: ' + (form.get('name') || 'nenurodytas') + '\nKontaktai: ' + form.get('contact') + '\nPapildoma informacija: ' + (form.get('note') || '—');
+      const messageBox = document.getElementById('orderMessage');
+      messageBox.value = preparedMessage;
+      messageBox.classList.add('show');
+      document.getElementById('copyActions').style.display = 'flex';
+      const status = document.getElementById('status');
+      status.textContent = 'Žinutė paruošta. Nukopijuokite ją ir išsiųskite Baltijos Lubos jums patogiu būdu.';
+      status.classList.add('show');
+    });
+    async function copyMessage() {
+      const status = document.getElementById('status');
+      try {
+        await navigator.clipboard.writeText(preparedMessage);
+        status.textContent = 'Užklausos tekstas nukopijuotas. Dabar galite jį įklijuoti į el. laišką arba žinutę.';
+      } catch (error) {
+        const box = document.getElementById('orderMessage'); box.focus(); box.select();
+        status.textContent = 'Pažymėjome užklausos tekstą. Nukopijuokite jį klavišais Ctrl+C (arba Copy telefone).';
+      }
+      status.classList.add('show');
+    }
+    function openEmail() {
+      const subject = encodeURIComponent('Užklausa dėl šviestuvo — ' + selectedProduct);
+      const body = encodeURIComponent(preparedMessage);
+      window.location.href = 'mailto:?subject=' + subject + '&body=' + body;
+    }
+  </script>
+</body>
+</html>
